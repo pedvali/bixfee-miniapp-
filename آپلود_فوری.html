@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>راهنمای آپلود فوری</title>
+    <style>
+        body {
+            font-family: Tahoma, Arial;
+            direction: rtl;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #d32f2f;
+            border-bottom: 3px solid #d32f2f;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #1976d2;
+            margin-top: 30px;
+        }
+        .step {
+            background: #e3f2fd;
+            padding: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #1976d2;
+            border-radius: 5px;
+        }
+        .important {
+            background: #fff3cd;
+            padding: 15px;
+            margin: 15px 0;
+            border-right: 4px solid #ffc107;
+            border-radius: 5px;
+        }
+        .code {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+        .btn {
+            display: inline-block;
+            background: #1976d2;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        .btn:hover {
+            background: #1565c0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚨 راهنمای فوری - آپلود Mini App</h1>
+        
+        <div class="important">
+            <strong>⚠️ مشکل:</strong> صفحه https://pedvali.github.io/bixfee-miniapp-/ هنوز محتوای قدیمی را نشان می‌دهد.
+        </div>
+
+        <h2>📋 مراحل آپلود (گام به گام)</h2>
+
+        <div class="step">
+            <h3>مرحله 1: حذف فایل‌های قدیمی</h3>
+            <ol>
+                <li>به <a href="https://github.com/pedvali/bixfee-miniapp-" target="_blank">Repository</a> بروید</li>
+                <li>روی فایل <code>index.html</code> کلیک کنید</li>
+                <li>روی آیکون <strong>🗑️ Delete</strong> (سمت راست بالا) کلیک کنید</li>
+                <li>پیام Commit: <code>Delete old files</code></li>
+                <li><strong>Commit changes</strong> را بزنید</li>
+            </ol>
+            <p><strong>همین کار را برای:</strong> <code>app.js</code> و <code>style.css</code> (اگر وجود دارند) انجام دهید</p>
+        </div>
+
+        <div class="step">
+            <h3>مرحله 2: آپلود فایل‌های جدید</h3>
+            <ol>
+                <li>در صفحه Repository، روی <strong>"Add file"</strong> → <strong>"Upload files"</strong> کلیک کنید</li>
+                <li>این 3 فایل را از پوشه <code>miniapp</code> انتخاب کنید:
+                    <div class="code">
+                        /root/Pedram/Bixfee/my_telegram_bot/miniapp/index.html<br>
+                        /root/Pedram/Bixfee/my_telegram_bot/miniapp/styles.css<br>
+                        /root/Pedram/Bixfee/my_telegram_bot/miniapp/app.js
+                    </div>
+                </li>
+                <li><strong>⚠️ مهم:</strong> فایل‌ها را مستقیماً در <strong>root</strong> آپلود کنید (نه در پوشه miniapp)</li>
+                <li>پیام Commit: <code>Update Mini App with Trust Wallet design</code></li>
+                <li><strong>Commit changes</strong> را بزنید</li>
+            </ol>
+        </div>
+
+        <div class="step">
+            <h3>مرحله 3: بررسی تنظیمات GitHub Pages</h3>
+            <ol>
+                <li>به <a href="https://github.com/pedvali/bixfee-miniapp-/settings/pages" target="_blank">Settings → Pages</a> بروید</li>
+                <li>مطمئن شوید:
+                    <ul>
+                        <li><strong>Source:</strong> Branch = <code>main</code></li>
+                        <li><strong>Folder:</strong> <code>/</code> (root) ⚠️ باید root باشد!</li>
+                    </ul>
+                </li>
+                <li><strong>Save</strong> کنید (اگر تغییر دادید)</li>
+            </ol>
+        </div>
+
+        <div class="step">
+            <h3>مرحله 4: منتظر بمانید و تست کنید</h3>
+            <ol>
+                <li><strong>5-10 دقیقه</strong> صبر کنید (GitHub Pages نیاز به rebuild دارد)</li>
+                <li>Cache مرورگر را پاک کنید: <code>Ctrl + Shift + R</code></li>
+                <li>یا از حالت <strong>Incognito/Private</strong> تست کنید</li>
+                <li>به <a href="https://pedvali.github.io/bixfee-miniapp-/" target="_blank">صفحه</a> بروید</li>
+            </ol>
+        </div>
+
+        <div class="important">
+            <h3>🔍 بررسی اینکه فایل جدید است:</h3>
+            <p>بعد از آپلود، به این آدرس بروید:</p>
+            <div class="code">
+                <a href="https://github.com/pedvali/bixfee-miniapp-/blob/main/index.html" target="_blank">
+                    https://github.com/pedvali/bixfee-miniapp-/blob/main/index.html
+                </a>
+            </div>
+            <ul>
+                <li>✅ اگر خط 22 را می‌بینید: <code>&lt;header class="app-header"&gt;</code> → فایل جدید است</li>
+                <li>❌ اگر خط 12 را می‌بینید: <code>&lt;h1&gt;به Bixfee خوش آمدید&lt;/h1&gt;</code> → فایل قدیمی است!</li>
+            </ul>
+        </div>
+
+        <h2>🔗 لینک‌های مفید</h2>
+        <a href="https://github.com/pedvali/bixfee-miniapp-" class="btn" target="_blank">Repository</a>
+        <a href="https://github.com/pedvali/bixfee-miniapp-/settings/pages" class="btn" target="_blank">تنظیمات Pages</a>
+        <a href="https://pedvali.github.io/bixfee-miniapp-/" class="btn" target="_blank">صفحه Mini App</a>
+
+        <h2>📝 چک‌لیست</h2>
+        <ul>
+            <li>☐ فایل‌های قدیمی از GitHub حذف شدند</li>
+            <li>☐ فایل‌های جدید آپلود شدند</li>
+            <li>☐ فایل‌ها در root هستند (نه در پوشه miniapp)</li>
+            <li>☐ GitHub Pages: Folder = <code>/</code> (root)</li>
+            <li>☐ 5-10 دقیقه صبر کردم</li>
+            <li>☐ Cache مرورگر را پاک کردم</li>
+            <li>☐ در حالت Incognito تست کردم</li>
+        </ul>
+
+        <div class="important">
+            <h3>⚠️ اگر هنوز مشکل دارید:</h3>
+            <ol>
+                <li>بررسی کنید که فایل‌ها واقعاً جدید هستند (خط 22 باید <code>app-header</code> باشد)</li>
+                <li>Force rebuild: در Settings → Pages، <strong>Unpublish</strong> و دوباره <strong>Save</strong> کنید</li>
+                <li>بررسی در حالت Incognito: اگر کار کرد → مشکل از cache است</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>
+

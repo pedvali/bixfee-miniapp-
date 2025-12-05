@@ -1,0 +1,54 @@
+📤 فایل‌های مورد نیاز برای آپلود به GitHub
+==========================================
+
+✅ باید آپلود کنید (3 فایل اصلی):
+-------------------------------
+1. index.html
+2. app.js
+3. styles.css
+
+✅ اختیاری (پیشنهاد می‌شود):
+----------------------------
+4. README.md
+5. .gitignore
+
+❌ هرگز آپلود نکنید:
+-------------------
+- config.py (شامل توکن‌های حساس)
+- miniapp_api.py (Backend - نیازی نیست)
+- bot.py (نیازی نیست)
+- *.log (فایل‌های لاگ)
+- *.ps1 (اسکریپت‌های PowerShell)
+- *.bat (فایل‌های Batch)
+
+==========================================
+📋 دستورالعمل سریع:
+==========================================
+
+روش 1: GitHub Web Interface
+----------------------------
+1. به https://github.com/pedvali/telegram-miniapp بروید
+2. Add file → Upload files
+3. فایل‌های زیر را بکشید و رها کنید:
+   - index.html
+   - app.js
+   - styles.css
+4. Commit changes
+
+روش 2: Git CLI
+-------------
+cd F:\Bixfee\my_telegram_bot\my_telegram_bot\miniapp
+git add index.html app.js styles.css
+git commit -m "Add Mini App"
+git push origin main
+
+==========================================
+✅ بعد از آپلود:
+==========================================
+1. Settings → Pages
+2. Source: main branch
+3. Folder: / (root)
+4. Save
+
+URL شما: https://pedvali.github.io/telegram-miniapp/
+

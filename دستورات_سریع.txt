@@ -1,0 +1,103 @@
+===========================================
+🚀 دستورات سریع برای آپلود Mini App
+===========================================
+
+مشکل: صفحه https://pedvali.github.io/bixfee-miniapp-/ هنوز محتوای قدیمی را نشان می‌دهد.
+
+راه‌حل: فایل‌ها باید در ROOT repository آپلود شوند (نه در پوشه miniapp)
+
+===========================================
+روش 1: استفاده از اسکریپت (پیشنهادی)
+===========================================
+
+1. PowerShell را باز کنید (به عنوان Administrator)
+
+2. به پوشه miniapp بروید:
+   cd /root/Pedram/Bixfee/my_telegram_bot/miniapp
+
+3. اسکریپت را اجرا کنید:
+   .\upload_to_root.ps1
+
+4. اطلاعات را وارد کنید:
+   - Username: pedvali
+   - Authentication: 1 (Token) یا 2 (Password)
+   - Token یا Password را وارد کنید
+
+===========================================
+روش 2: آپلود دستی از GitHub Web
+===========================================
+
+1. به https://github.com/pedvali/bixfee-miniapp- بروید
+
+2. فایل‌های قدیمی را حذف کنید (اگر وجود دارند):
+   - index.html (قدیمی)
+   - style.css (اگر وجود دارد)
+   - app.js (قدیمی)
+
+3. روی "Add file" → "Upload files" کلیک کنید
+
+4. فایل‌های زیر را از پوشه miniapp آپلود کنید:
+   - index.html
+   - styles.css
+   - app.js
+
+   ⚠️ مهم: فایل‌ها را مستقیماً در root آپلود کنید (نه در پوشه miniapp)
+
+5. Commit کنید:
+   - پیام: "Update Mini App with Trust Wallet design"
+   - Commit changes
+
+===========================================
+تنظیمات GitHub Pages (بعد از آپلود)
+===========================================
+
+1. به https://github.com/pedvali/bixfee-miniapp-/settings/pages بروید
+
+2. تنظیمات:
+   - Source: Branch = main
+   - Folder: / (root) ⚠️ باید root باشد!
+   - Save
+
+3. 2-5 دقیقه صبر کنید
+
+4. Cache مرورگر را پاک کنید (Ctrl+Shift+R)
+
+5. تست کنید:
+   https://pedvali.github.io/bixfee-miniapp-/
+
+===========================================
+ساختار صحیح Repository
+===========================================
+
+بعد از آپلود، ساختار باید این‌طور باشد:
+
+bixfee-miniapp-/
+├── index.html      ✅ (در root)
+├── styles.css      ✅ (در root)
+├── app.js          ✅ (در root)
+└── README.md
+
+نه این‌طور:
+bixfee-miniapp-/
+├── index.html      ❌ (قدیمی)
+└── miniapp/
+    ├── index.html  ❌ (اشتباه!)
+
+===========================================
+اگر مشکل حل نشد
+===========================================
+
+1. بررسی کنید که فایل‌ها واقعاً در root هستند:
+   https://github.com/pedvali/bixfee-miniapp-
+
+2. بررسی تنظیمات Pages:
+   Folder باید "/" باشد (نه "/miniapp")
+
+3. Cache را پاک کنید:
+   - مرورگر: Ctrl+Shift+R
+   - یا در حالت Incognito تست کنید
+
+4. چند دقیقه صبر کنید (GitHub Pages ممکن است delay داشته باشد)
+
+===========================================
+

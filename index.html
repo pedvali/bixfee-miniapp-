@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Bixfee - پنل کاربری</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Splash Screen with Logo -->
+    <div id="splash-screen" class="splash-screen">
+        <div class="coin-container">
+            <img src="assets/bixfee-logo.png" alt="Bixfee Logo" class="coin-logo" id="coin-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="coin-logo-fallback" style="display: none;">
+                <div class="logo-circle">
+                    <div class="logo-text-large">B</div>
+                    <div class="logo-text-small">Bixfee</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loading" class="loading-screen" style="display: none;">
+        <div class="loading-spinner"></div>
+        <p id="loading-text">در حال بارگذاری...</p>
+    </div>
+
+    <!-- Main App Container -->
+    <div id="app" class="app-container" style="display: none;">
+        <!-- Home Page -->
+        <div id="home-page" class="page active">
+            <!-- Header -->
+            <header class="app-header">
+                <div class="header-top">
+                    <div class="logo-section">
+                        <div class="logo">👑</div>
+                        <span class="logo-text">Bixfee</span>
+                    </div>
+                    <button id="qr-scan-btn" class="icon-btn" title="اسکن QR">
+                        <span>📷</span>
+                    </button>
+                </div>
+                <div class="balance-section">
+                    <p class="balance-label">موجودی کل</p>
+                    <h1 class="balance-amount" id="total-balance">0 تومان</h1>
+                </div>
+            </header>
+
+            <!-- Main Action Buttons -->
+            <div class="main-actions">
+                <button class="action-btn buy-btn" onclick="showActionModal('buy')">
+                    <div class="action-icon">💳</div>
+                    <span class="action-label">خرید</span>
+                </button>
+                <button class="action-btn sell-btn" onclick="showActionModal('sell')">
+                    <div class="action-icon">💰</div>
+                    <span class="action-label">فروش</span>
+                </button>
+                <button class="action-btn convert-btn" onclick="showActionModal('convert')">
+                    <div class="action-icon">🔄</div>
+                    <span class="action-label">تبدیل</span>
+                </button>
+            </div>
+
+            <!-- Cards Section -->
+            <div class="cards-section">
+                <div class="feature-card orders-card" onclick="showPage('orders')">
+                    <div class="card-icon">📋</div>
+                    <div class="card-content">
+                        <h3>سفارشات من</h3>
+                        <p>وضعیت سفارش‌ها</p>
+                    </div>
+                    <div class="card-arrow">›</div>
+                </div>
+
+                <div class="feature-card wallet-card" onclick="showPage('wallet')">
+                    <div class="card-icon">💼</div>
+                    <div class="card-content">
+                        <h3>کیف پول</h3>
+                        <p>موجودی‌ها و دارایی‌ها</p>
+                    </div>
+                    <div class="card-arrow">›</div>
+                </div>
+
+                <div class="feature-card referral-card" onclick="showPage('referral')">
+                    <div class="card-icon">🤝</div>
+                    <div class="card-content">
+                        <h3>برنامه معرفی</h3>
+                        <p>لینک دعوت و درآمد</p>
+                    </div>
+                    <div class="card-arrow">›</div>
+                </div>
+
+                <div class="feature-card support-card" onclick="showPage('support')">
+                    <div class="card-icon">💬</div>
+                    <div class="card-content">
+                        <h3>پشتیبانی</h3>
+                        <p>چت و تیکت</p>
+                    </div>
+                    <div class="card-arrow">›</div>
+                </div>
+
+                <div class="feature-card forex-card" onclick="openForexMarket()">
+                    <div class="card-icon">📈</div>
+                    <div class="card-content">
+                        <h3>بازار فارکس</h3>
+                        <p>نرخ‌های لحظه‌ای</p>
+                    </div>
+                    <div class="card-arrow">›</div>
+                </div>
+
+                <div class="feature-card profile-card" onclick="showPage('profile')">
+                    <div class="card-icon">👤</div>
+                    <div class="card-content">
+                        <h3>پنل کاربری</h3>
+                        <p>اطلاعات و تنظیمات</p>
+                    </div>
+                    <div class="card-arrow">›</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wallet Page -->
+        <div id="wallet-page" class="page">
+            <div class="page-header">
+                <button class="back-btn" onclick="showPage('home')">‹</button>
+                <h2>کیف پول</h2>
+            </div>
+            <div class="wallet-content">
+                <!-- Wallet Actions -->
+                <div class="wallet-actions">
+                    <button class="wallet-action-btn" onclick="openChargeWallet()">
+                        <div class="wallet-action-icon">➕</div>
+                        <span>شارژ</span>
+                    </button>
+                    <button class="wallet-action-btn" onclick="openWithdrawWallet()">
+                        <div class="wallet-action-icon">➖</div>
+                        <span>برداشت</span>
+                    </button>
+                    <button class="wallet-action-btn" onclick="openWalletHistory()">
+                        <div class="wallet-action-icon">📜</div>
+                        <span>تاریخچه</span>
+                    </button>
+                </div>
+
+                <!-- Total Balance Card -->
+                <div class="wallet-balance-card">
+                    <p class="wallet-balance-label">موجودی کل</p>
+                    <h2 class="wallet-balance-amount" id="wallet-total-balance">0 تومان</h2>
+                </div>
+
+                <!-- Assets List -->
+                <div class="assets-section">
+                    <h3 class="section-title">دارایی‌ها</h3>
+                    <div id="wallet-assets" class="assets-list">
+                        <!-- Assets will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Swap Page -->
+        <div id="swap-page" class="page">
+            <div class="page-header">
+                <button class="back-btn" onclick="showPage('home')">‹</button>
+                <h2>تبدیل سریع</h2>
+            </div>
+            <div class="swap-content">
+                <div class="swap-form">
+                    <div class="swap-input-group">
+                        <label>از</label>
+                        <div class="swap-input">
+                            <input type="number" id="swap-from-amount" placeholder="0.00">
+                            <select id="swap-from-currency">
+                                <option value="voucher">ووچر</option>
+                                <option value="usdt">USDT</option>
+                                <option value="trx">TRX</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="swap-arrow">⇅</div>
+                    <div class="swap-input-group">
+                        <label>به</label>
+                        <div class="swap-input">
+                            <input type="number" id="swap-to-amount" placeholder="0.00" readonly>
+                            <select id="swap-to-currency">
+                                <option value="usdt">USDT</option>
+                                <option value="voucher">ووچر</option>
+                                <option value="trx">TRX</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="rate-info">
+                        <span>نرخ لحظه‌ای: </span>
+                        <span id="swap-rate">-</span>
+                    </div>
+                    <button class="swap-btn" onclick="executeSwap()">تبدیل</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Orders Page -->
+        <div id="orders-page" class="page">
+            <div class="page-header">
+                <button class="back-btn" onclick="showPage('home')">‹</button>
+                <h2>سفارشات من</h2>
+            </div>
+            <div class="orders-content">
+                <div class="orders-tabs">
+                    <button class="order-tab active" data-order-type="all">همه</button>
+                    <button class="order-tab" data-order-type="pending">در انتظار</button>
+                    <button class="order-tab" data-order-type="completed">تکمیل شده</button>
+                </div>
+                <div id="orders-list" class="orders-list">
+                    <!-- Orders will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Page -->
+        <div id="settings-page" class="page">
+            <div class="page-header">
+                <button class="back-btn" onclick="showPage('home')">‹</button>
+                <h2>تنظیمات</h2>
+            </div>
+            <div class="settings-content">
+                <div class="settings-section">
+                    <div class="setting-item" onclick="toggleLanguage()">
+                        <div class="setting-icon">🌐</div>
+                        <div class="setting-text">
+                            <h4>زبان</h4>
+                            <p id="current-language">فارسی</p>
+                        </div>
+                        <div class="setting-arrow">›</div>
+                    </div>
+                    <div class="setting-item" onclick="toggleTheme()">
+                        <div class="setting-icon">🌙</div>
+                        <div class="setting-text">
+                            <h4>تم</h4>
+                            <p id="current-theme">تیره</p>
+                        </div>
+                        <div class="setting-arrow">›</div>
+                    </div>
+                </div>
+                <div class="settings-section">
+                    <div class="setting-item" onclick="showUserInfo()">
+                        <div class="setting-icon">👤</div>
+                        <div class="setting-text">
+                            <h4>اطلاعات کاربری</h4>
+                            <p id="user-info-display">-</p>
+                        </div>
+                        <div class="setting-arrow">›</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Referral Page -->
+        <div id="referral-page" class="page">
+            <div class="page-header">
+                <button class="back-btn" onclick="showPage('home')">‹</button>
+                <h2>برنامه معرفی</h2>
+            </div>
+            <div class="referral-content">
+                <div class="referral-stats-card">
+                    <div class="stat-item">
+                        <span class="stat-label">معرفی‌ها</span>
+                        <span class="stat-value" id="referrals-count">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">کمیسیون</span>
+                        <span class="stat-value" id="commission-amount">0 تومان</span>
+                    </div>
+                </div>
+                <div class="referral-link-card">
+                    <label>لینک معرفی شما:</label>
+                    <div class="referral-link-box">
+                        <input type="text" id="referral-link" readonly>
+                        <button class="copy-btn" onclick="copyReferralLink()">کپی</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Support Page -->
+        <div id="support-page" class="page">
+            <div class="page-header">
+                <button class="back-btn" onclick="showPage('home')">‹</button>
+                <h2>پشتیبانی</h2>
+            </div>
+            <div class="support-content">
+                <!-- Support Actions -->
+                <div class="support-actions">
+                    <button class="support-action-btn" onclick="createNewTicket()">
+                        <div class="support-action-icon">➕</div>
+                        <span>تیکت جدید</span>
+                    </button>
+                    <button class="support-action-btn" onclick="showMyTickets()">
+                        <div class="support-action-icon">📋</div>
+                        <span>تیکت‌های من</span>
+                    </button>
+                </div>
+
+                <!-- Active Ticket -->
+                <div id="active-ticket-section" class="active-ticket-section" style="display: none;">
+                    <div class="active-ticket-card">
+                        <div class="ticket-header">
+                            <div>
+                                <h3 id="active-ticket-number">-</h3>
+                                <p id="active-ticket-status" class="ticket-status">-</p>
+                            </div>
+                            <button class="close-ticket-btn" onclick="closeActiveTicket()">✕</button>
+                        </div>
+                        <div id="ticket-messages" class="ticket-messages">
+                            <!-- Messages will be loaded here -->
+                        </div>
+                        <div class="ticket-input-area">
+                            <input type="text" id="ticket-message-input" placeholder="پیام خود را بنویسید...">
+                            <button class="send-ticket-btn" onclick="sendTicketMessage()">ارسال</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tickets List -->
+                <div id="tickets-list-section" class="tickets-list-section">
+                    <h3 class="section-title">تیکت‌های من</h3>
+                    <div id="tickets-list" class="tickets-list">
+                        <!-- Tickets will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Support Options -->
+                <div class="support-options">
+                    <button class="support-option" onclick="openSupportChat()">
+                        <div class="support-icon">💬</div>
+                        <div class="support-text">
+                            <h4>چت پشتیبانی</h4>
+                            <p>ارتباط مستقیم با تیم پشتیبانی</p>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Page (User Panel) -->
+        <div id="profile-page" class="page">
+            <div class="page-header">
+                <button class="back-btn" onclick="showPage('home')">‹</button>
+                <h2>پنل کاربری</h2>
+            </div>
+            <div class="profile-content">
+                <!-- User Info Card -->
+                <div class="profile-info-card">
+                    <div class="profile-avatar">
+                        <span id="profile-avatar-text">👤</span>
+                    </div>
+                    <h3 id="profile-name">-</h3>
+                    <p id="profile-username" class="profile-username">-</p>
+                </div>
+
+                <!-- User Stats -->
+                <div class="profile-stats">
+                    <div class="profile-stat-item">
+                        <span class="stat-label">سطح</span>
+                        <span class="stat-value" id="profile-level">-</span>
+                    </div>
+                    <div class="profile-stat-item">
+                        <span class="stat-label">امتیاز</span>
+                        <span class="stat-value" id="profile-xp">-</span>
+                    </div>
+                    <div class="profile-stat-item">
+                        <span class="stat-label">تراکنش‌ها</span>
+                        <span class="stat-value" id="profile-transactions">-</span>
+                    </div>
+                    <div class="profile-stat-item">
+                        <span class="stat-label">حجم معاملات</span>
+                        <span class="stat-value" id="profile-volume">-</span>
+                    </div>
+                </div>
+
+                <!-- Profile Menu -->
+                <div class="profile-menu">
+                    <div class="profile-menu-section">
+                        <div class="profile-menu-item" onclick="openSecuritySettings()">
+                            <div class="menu-item-icon">🔐</div>
+                            <div class="menu-item-text">
+                                <h4>تنظیمات امنیتی</h4>
+                                <p>2FA، رمز عبور و امنیت</p>
+                            </div>
+                            <div class="menu-item-arrow">›</div>
+                        </div>
+                        <div class="profile-menu-item" onclick="openTransactionHistory()">
+                            <div class="menu-item-icon">📜</div>
+                            <div class="menu-item-text">
+                                <h4>تاریخچه تراکنش‌ها</h4>
+                                <p>مشاهده تمام تراکنش‌ها</p>
+                            </div>
+                            <div class="menu-item-arrow">›</div>
+                        </div>
+                        <div class="profile-menu-item" onclick="openPriceChart()">
+                            <div class="menu-item-icon">📊</div>
+                            <div class="menu-item-text">
+                                <h4>قیمت‌های لحظه‌ای</h4>
+                                <p>نرخ‌های خرید و فروش</p>
+                            </div>
+                            <div class="menu-item-arrow">›</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Forex Market Page -->
+        <div id="forex-page" class="page">
+            <div class="page-header">
+                <button class="back-btn" onclick="showPage('home')">‹</button>
+                <h2>بازار فارکس</h2>
+                <button class="refresh-btn" onclick="refreshForexRates()">🔄</button>
+            </div>
+            <div class="forex-content">
+                <div class="forex-info-card">
+                    <p class="forex-info-text">نرخ‌های لحظه‌ای بازار فارکس</p>
+                    <p class="forex-update-time" id="forex-update-time">آخرین به‌روزرسانی: -</p>
+                </div>
+                <div id="forex-rates" class="forex-rates-list">
+                    <!-- Forex rates will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+        <button class="nav-item active" data-page="home" onclick="showPage('home')">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </button>
+        <button class="nav-item" data-page="wallet" onclick="showPage('wallet')">
+            <span class="nav-icon">💳</span>
+            <span class="nav-label">Wallet</span>
+        </button>
+        <button class="nav-item" data-page="swap" onclick="showPage('swap')">
+            <span class="nav-icon">🔄</span>
+            <span class="nav-label">Swap</span>
+        </button>
+        <button class="nav-item" data-page="orders" onclick="showPage('orders')">
+            <span class="nav-icon">📄</span>
+            <span class="nav-label">Orders</span>
+        </button>
+        <button class="nav-item" data-page="settings" onclick="showPage('settings')">
+            <span class="nav-icon">⚙️</span>
+            <span class="nav-label">Settings</span>
+        </button>
+    </nav>
+
+    <!-- Action Modal (Buy/Sell/Convert) -->
+    <div id="action-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">خرید</h3>
+                <button class="modal-close" onclick="closeActionModal()">×</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Modal content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+⚡ راهنمای فوری: خروج از Demo Mode
+==========================================
+
+📌 مشکل: مینی اپ در حالت نمایشی است
+
+✅ راه حل: راه‌اندازی Backend API
+
+==========================================
+🚀 روش سریع (برای تست محلی):
+==========================================
+
+1. فایل START_BACKEND.bat را اجرا کنید
+   یا دستور زیر را در Terminal اجرا کنید:
+   
+   cd F:\Bixfee\my_telegram_bot\my_telegram_bot
+   python miniapp_api.py
+
+2. در app.js خط 32 را پیدا کنید:
+   
+   return null; // ❌ تغییر دهید به URL واقعی Backend API
+   
+   به این تغییر دهید:
+   
+   return 'http://localhost:5000/api';
+
+3. فایل app.js را به GitHub آپلود کنید
+
+4. مینی اپ را تست کنید ✅
+
+==========================================
+🌐 برای Production (VPS):
+==========================================
+
+1. Backend API را روی VPS اجرا کنید:
+   
+   cd /path/to/my_telegram_bot/my_telegram_bot
+   python miniapp_api.py
+   
+   یا با Gunicorn:
+   
+   pip install gunicorn
+   gunicorn -w 4 -b 0.0.0.0:5000 miniapp_api:app
+
+2. در app.js خط 32 را تغییر دهید:
+   
+   return 'http://YOUR_SERVER_IP:5000/api';
+   
+   یا اگر Domain دارید:
+   
+   return 'https://api.yourdomain.com/api';
+
+3. فایل app.js را به GitHub آپلود کنید
+
+4. مینی اپ را تست کنید ✅
+
+==========================================
+⚠️ نکات مهم:
+==========================================
+
+- Backend API باید همیشه در حال اجرا باشد
+- اگر Backend متوقف شود، مینی اپ به Demo Mode برمی‌گردد
+- برای Production از Gunicorn استفاده کنید
+- مطمئن شوید که پورت 5000 باز است
+
+==========================================
+

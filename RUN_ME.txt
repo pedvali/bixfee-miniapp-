@@ -1,0 +1,56 @@
+===========================================
+🚀 راهنمای سریع آپلود Mini App
+===========================================
+
+مرحله 1: باز کردن PowerShell
+-----------------------------
+1. کلید Windows را بزنید
+2. "PowerShell" را تایپ کنید
+3. Windows PowerShell را باز کنید
+
+مرحله 2: رفتن به پوشه Mini App
+-----------------------------
+این دستور را کپی و Paste کنید:
+
+cd F:\Bixfee\my_telegram_bot\my_telegram_bot\miniapp
+
+مرحله 3: اجرای اسکریپت
+-----------------------------
+این دستور را اجرا کنید:
+
+.\upload.ps1
+
+مرحله 4: وارد کردن اطلاعات
+-----------------------------
+اسکریپت از شما می‌پرسد:
+1. GitHub Username: pedvali (یا نام کاربری خودتان)
+2. Authentication Method: 1 یا 2
+   - روش 1: Personal Access Token (پیشنهادی)
+   - روش 2: پسورد
+
+اگر روش 1 را انتخاب کردید:
+- به https://github.com/settings/tokens بروید
+- Generate new token (classic)
+- Scope: repo را انتخاب کنید
+- Token را کپی و وارد کنید
+
+===========================================
+✅ بعد از آپلود موفق:
+===========================================
+
+1. به این آدرس بروید:
+   https://github.com/pedvali/bixfee-miniapp-/settings/pages
+
+2. تنظیمات:
+   - Source: Branch = main
+   - Folder: /miniapp
+   - Save
+
+3. بعد از 2-5 دقیقه، URL شما:
+   https://pedvali.github.io/bixfee-miniapp-/
+
+4. در config.py این URL را تنظیم کنید:
+   MINI_APP_URL = "https://pedvali.github.io/bixfee-miniapp-/"
+
+===========================================
+

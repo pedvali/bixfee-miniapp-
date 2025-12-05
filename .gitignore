@@ -1,0 +1,53 @@
+# فایل‌های حساس - هرگز آپلود نشوند
+config.py
+*.env
+*.key
+*.pem
+
+# فایل‌های Backend - نیازی نیست
+miniapp_api.py
+bot.py
+database.py
+handlers.py
+admin_handlers.py
+
+# فایل‌های لاگ
+*.log
+logs/
+
+# فایل‌های Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# فایل‌های موقت
+*.ps1
+*.bat
+*.tmp
+*.bak
+*.swp
+*~
+
+# فایل‌های IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# فایل‌های سیستم
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# فقط فایل‌های Frontend را نگه دارید
+# index.html ✅
+# app.js ✅
+# styles.css ✅
+
