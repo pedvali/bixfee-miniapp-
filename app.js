@@ -10,20 +10,20 @@ function getApiBase() {
         return 'http://localhost:5000/api';
     }
     
-    // برای Production - استفاده از دامنه mini.zhaktech.top
-    // اگر روی دامنه mini.zhaktech.top هستیم یا از IP استفاده می‌کنیم
-    const hostname = window.location.hostname;
-    const port = window.location.port || (window.location.protocol === 'https:' ? '443' : '80');
-    
-    // اگر روی دامنه mini.zhaktech.top هستیم
-    if (hostname === 'mini.zhaktech.top' || hostname.includes('zhaktech.top')) {
-        return `https://mini.zhaktech.top:2083/api`;
+    // اگر در GitHub Pages هستیم
+    if (window.location.origin.includes('github.io')) {
+        // Backend API URL - استفاده از HTTPS برای حل مشکل Mixed Content
+        // nginx با SSL روی پورت 2083 راه‌اندازی شده است
+        return 'https://194.116.236.44:2083/api';
     }
     
-    // برای سایر موارد - از همان origin استفاده کن
+    // برای Production - از همان origin استفاده کن
+    // اگر Backend API روی همان سرور است از '/api' استفاده کن
+    // این کار باعث می‌شود که با دامنه bixfee.com به صورت خودکار کار کند
     const origin = window.location.origin;
     
-    // اگر Backend API روی همان سرور است
+    // اگر Backend API روی همان سرور است (بیشترین حالت)
+    // این کار با دامنه bixfee.com و IP 194.116.236.44 کار می‌کند
     return `${origin}/api`;
 }
 
